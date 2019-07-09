@@ -73,18 +73,26 @@
         };
         rectangle.view.draw();
         
+        var grad_orig;
+        var grad_stop_one;
+        var grad_stop_two;
 				var tool = new paper.Tool();
 				tool.onMouseDown = function (event) {
           var hit = rectangle.hitTest(event.point, { tolerance: 10, fill: true });
           if (hit) {
-            rectangle.fillColor.gradient.origin=event.point;
-            rectangle.fillColor.gradient.stops=[cp.history[cp.history.length - 1], cp.history[cp.history.length - 2]];
+            grad_orig = event.point;
+            grad_stop_one = cp.history[cp.history.length - 1];
+            grad_stop_two = cp.history[cp.history.length - 2];
           }
 				}
-				tool.onMouseUp = function (event) {
+        
+        tool.onMouseUp = function (event) {
           rectangle.fillColor.gradient.destination = event.point;
+          rectangle.fillColor.gradient.origin = grad_orig;
+          rectangle.fillColor.gradient.stops = [grad_stop_one, grad_stop_two];
 					//alert(3);
 				}
+				
 			}
 			// your custom interaction goes here!
 			// you may replace everything
