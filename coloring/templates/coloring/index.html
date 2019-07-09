@@ -30,7 +30,7 @@
 		}
 
 		#myCanvas {
-			padding-left: 0;
+			  padding-left: 0;
 		    padding-right: 0;
 		    margin-left: auto;
 		    margin-right: auto;
@@ -60,12 +60,12 @@
       
 			function myGradientInteraction(){
         let rectangle = new paper.Path();
-        rectangle.add(new paper.Point(275, 275));
-        rectangle.add(new paper.Point(275, 475));
-        rectangle.add(new paper.Point(475, 475));
-        rectangle.add(new paper.Point(475, 275));
+        rectangle.add(new paper.Point(120, 295));
+        rectangle.add(new paper.Point(120, 425));
+        rectangle.add(new paper.Point(600, 425));
+        rectangle.add(new paper.Point(600, 295));
         rectangle.closed = true;
-        rectangle.strokeWidth = 5;
+        rectangle.strokeWidth = 1;
         rectangle.fillColor = {
           gradient: {
             stops: [['red', 1], ['red', 1], ['red', 1]],
