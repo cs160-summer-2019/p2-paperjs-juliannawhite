@@ -5,3 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('coloring/', include('coloring.urls')),
 ]
+
+

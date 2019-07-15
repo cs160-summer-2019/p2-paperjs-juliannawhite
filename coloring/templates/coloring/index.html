@@ -9,6 +9,8 @@
   <link rel="stylesheet" type="text/css" href="game.css"> 
 <link href="https://fonts.googleapis.com/css?family=oswald" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -19,21 +21,35 @@
     
 
 		#color-palette {
-			width: 300px;
-			background-color: #f1f1f1;
+			width: 900px;
 			display: flex;
 			flex-wrap: wrap;
 			position: absolute;
+      margin-top:-50px;
 			
 		}
 		.swatch {
-			width: 64px;
-			height: 64px;
+			width: 94px;
+			height: 94px;
 			-moz-border-radius: 12px;
 			-webkit-border-radius: 12px;
+      margin-right:20px;
 			border-radius: 80%;
 			margin: 3px;
+      border:2px solid black;
 		}
+    
+    .erasure {
+      width: 94px;
+			height: 94px;
+			-moz-border-radius: 12px;
+			-webkit-border-radius: 12px;
+      margin-right:20px;
+			border-radius: 80%;
+			margin: 3px;
+      border:2px solid black;
+    }
+    
 
 		#myCanvas {
 			  padding-left: 0;
@@ -44,10 +60,10 @@
 		}
     
       body {
-    background-color: #ebfaeb;
+    background:rgba(218, 236, 255, 0.4);
     }
 
-    #art {
+    .art {
         width: 650px;
         height:830px;
         background-color: white;
@@ -81,6 +97,7 @@
         height:80px;
         font-size: 35px;
         margin-top: 10px;
+        font-family: "Montserrat";
     }
 
     .obtn {
@@ -91,10 +108,11 @@
     }
 
     .timer {
-        color:red;
+        color:#bc77ad;
         font-size: 160px;
         font-family:"Bevan";
         letter-spacing: 5px;
+      margin-top:-50px;
 
     }
 
@@ -118,21 +136,22 @@
       padding: 20px;
       border: 1px solid #888;
       width: 80%; /* Could be more or less, depending on screen size */
+      font-size:60px;
+      font-family: "Montserrat";
+      
     }
 
     .close {
       color: #aaa;
       float: right;
-      font-size: 28px;
+      font-size: 78px;
       font-weight: bold;
     }
-
-
     .instBox {
         text-align: left;
         size: 15px;
         color: black;
-        font-family: "Bevan";
+        font-family: "Montserrat";
     }
     
 	</style>
@@ -172,8 +191,9 @@
 			// create a color palette with the given colors
 			function createColorPalette(colors){
 				// create a swatch for each color
-				for (var i = 3; i >= 0; i--) {
-					var $swatch = $("<div>").css("background-color", colors[i])
+        var jujuColors = ['#6d8ebf', '#bc77ad', '#96bc96'];
+				for (var i = 2; i >= 0; i--) {
+					var $swatch = $("<div>").css("background-color", jujuColors[i])
 									   .addClass("swatch");
 					$swatch.click(function(){
 						// add color to the color palette history
@@ -181,7 +201,22 @@
 					});
 					cp.$container.append($swatch);
 				}
+      }
+        
+     function createErasure() {
+        var erasure = ['white'];
+				for (var i = 0; i >= 0; i--) {
+					var $swatch = $("<div>").css("background-color", erasure[i])
+									   .addClass("swatch");
+					$swatch.click(function(){
+						// add color to the color palette history
+					  	cp.history.push($(this).css("background-color"));
+					});
+					cp.$container.append($swatch);
+				}   
 			}
+      
+      
 			// loads a set of colors from a json to create a color palette
 			function getColorsCreatePalette(){
 				cp.$container.html(" ");
@@ -191,6 +226,7 @@
 						cp.options.push(colors[keys[i]][500]);
 					}
 					createColorPalette(cp.options);
+          createErasure()
 				});
 			}
 
@@ -318,64 +354,80 @@
 </head>
 <body>	
   
-  <div class="container-fluid">
-        <div class="row">
+  <div class="container">
+    <div class="row">
+            
             <div class="col-12">
-                <button class="btn hbtn" onClick = "window.location = 'home.html'" style="background-color: white;"><i class="fa fa-home" ></i> Home</button>
-        
-                <div id="clockdiv" class="timer"></div>
-
- 
-    
-          </div>
-          
-            <div class="col-9">
-              <button class="btn obtn" style="margin-bottom: 20px; background-color: white;" id="pause"><i class="fa fa-pause"></i></button>
-              <button class="btn obtn" style="margin-bottom: 20px; background-color: white;" id="inst"><i class="fa fa-info"></i></button>
-                        
-                          <div id="myPauseModal" class="modal">
+              <button class="btn hbtn" onClick = "window.location = 'home'" style="background-color: white; margin-right:530px;"><i class="fa fa-home" ></i> Home</button>
+              <button class="btn obtn" style="margin-bottom: 20px; background-color: white; margin-right:15px;" id="pause"><i class="fa fa-pause"></i></button>
+              <button class="btn obtn" style="margin-bottom: 20px; background-color: white;" id="inst"><i class="fa fa-info"></i></button> 
+              
+              <div id="myPauseModal" class="modal">
                                   <div class="modal-content">
                                     <span class="close" id="close2">&times;</span>
                                       <div class="container-fluid">
                                         <div class="row">
-                                            <div class="col-12 instBox">
+                                            <div class="col-12 instBox" style="margin-bottom:20px;">
                                                 PAUSED:
                                             </div>
                                             
                                         </div>
                                         <div class="row">
-                                            <div class="col-12" style="text-align: left;">
-                                                Your game has been paused ! You can exit this screen to resume your game.
+                                            <div class="col-12" style="text-align: left; font-size:35px;">
+                                                You can exit this screen to resume your game.
                                             </div>
                                         </div>
                                       </div>
                                   </div>
                             </div>
-                      
-                        <div id="myInstModal" class="modal">
+              
+               <div id="myInstModal" class="modal">
                                   <div class="modal-content">
                                     <span class="close" id="close1">&times;</span>
 
                                       <div class="container-fluid">
                                         <div class="row">
-                                            <div class="col-12 instBox">
+                                            <div class="col-12 instBox" style="margin-bottom:20px;">
                                                 INSTRUCTIONS:
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12" style="text-align: left;">
-                                                Color in the picture such that no adjacent portions are the same color. Make sure to do so before the timer runs out ! You can exit this screen to resume your game.
-                                            </div>
-                                        </div>
+                                                             <div class="row">
+                                <div class="col-12" style="text-align: left; font-size:35px;">
+                                   <p>On the following screen, you will be given a drawing that is split up into multiple parts. Your goal is to color this picture in such a way that the following requirements are met:
+                                  </p>
+                                  <p>
+                                    1. Each region of the drawing must be either <a style="color:#96bc96;">Green</a>, <a style="color:#bc77ad;">Purple</a>, or <a style="color: #6d8ebf;">Blue</a>.
+                                  </p>
+                                  <p>
+                                    2. No adjacent regions of the drawing are the same color.
+                                  </p>
+                                  <p>
+                                    3. You complete the activity before your three minutes run out!
+                                  </p>
+                                  <p style="margin-top:10px;">
+                                    Select the color you'd like to use in the bottom left corner. If you mess up, use the White option to reset your work.
+                                    Good luck!
+                                  </p>
+                                </div>
+                            </div>
                                       </div>
                                   </div>
                             </div>
-          </div>
+            </div>
     </div>
+    
   </div>
+  
+  <div class="container">
+        <div class="row">
+            <div class="col-12" style="text-align: center;">
+                <div id="clockdiv" class="timer"></div> 
+          </div>
+        </div>
+    </div>
     
     <div class="container-fluid">
-        <div class="row" style = "text-align: center;">
+        <div class="row" style = "text-align: center; background-color: white; margin-bottom:80px; border:2px solid black; padding-top:30px;padding-bottom:30px;">
             <div class="col-12">
                 	<canvas id="myCanvas" width="750px" height="750px"></canvas>
             
@@ -384,11 +436,16 @@
     </div>
   
   <div class="container-fluid">
-     <div class="row" style = "text-align: center;">
-            <div class="col-12" >
+     <div class="row" style = "text-align: left;">
+            <div class="col-9" >
                 	<div id="color-palette"></div>  
             </div>
+       
+         <div class="col-3" >
+                    <div id="erasure"></div>  
+              </div>
     </div>
+
     
   </div>
   

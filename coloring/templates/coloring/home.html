@@ -1,0 +1,248 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  	<title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+  
+<style>
+
+      body {
+        background:rgba(218, 236, 255, 0.4);
+    }
+
+    div {
+        text-align: center;
+        font-family:"Montserrat" thin;
+        text-align: center;
+        
+    }
+
+    .red {
+        color: #96bc96;
+        font-size: 110px;
+        font-family:"Montserrat" bold;
+        
+        margin-top: 150px;
+        text-align: center;
+    }
+
+    .yellow {
+        color: #bc77ad;
+        font-size: 110px;
+        font-family:"Montserrat" bold;
+        text-align: center;
+    }
+
+    .blue {
+        color: #6d8ebf;
+        font-size: 110px;
+        font-family:"Montserrat" bold;
+        text-align: center;
+
+    }
+
+    .hbutton {
+        width: 500px;
+        height: 100px;
+        margin-top: 70px;
+        font-size: 50px;
+        border-radius: 10%;
+    }
+
+    .btn {
+        border:1px solid black;
+        color: #C8C8C8;
+    }
+
+        .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+      font-size:60px;
+      font-family: "Montserrat";
+      
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 78px;
+      font-weight: bold;
+    }
+    .instBox {
+        text-align: left;
+        size: 15px;
+        color: black;
+        font-family: "Montserrat";
+    }
+  
+</style>  
+  
+  
+<body>
+
+    <div class="container-fluid" style="text-align: center;">
+        
+        <div class="row">
+            <div class="col-12 red">THREE</div>
+        </div>
+        <div class="row">
+            <div class="col-12 yellow">COLOR</div>
+        </div>
+        <div class="row">
+            <div class="col-12 blue">CHALLENGE</div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-light hbutton" style="margin-top:80px;" onClick = "window.location = 'http://p2-paperjs-juliannawhite-juliannawhite13758275.codeanyapp.com:8000/coloring/'"> NEW GAME </button>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-light hbutton" id="lead"> 
+                    LEADERBOARD 
+                </button>
+                
+                <div id="myLeadModal" class="modal">
+                      <div class="modal-content">
+                        <span class="close" id="close3">&times;</span>
+                          
+                          <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12" style="text-align: left;">
+                                    <p>Level: EASY</p>
+                                    <p style="font-size:40px;">1) Sarah Sterman</p>
+                                    <p style="font-size:40px;">2) Josh Hug</p>
+                                    <p style="font-size:40px;">3) Andrew Head</p>
+                                  <p>Level: MEDIUM</p>
+                                    <p style="font-size:40px;">1) Julianna White</p>
+                                    <p style="font-size:40px;">2) John Denero</p>
+                                    <p style="font-size:40px;">3) Ryan Kang</p>
+                                  <p>Level: HARD</p>
+                                    <p style="font-size:40px;">1) Anant Sahai</p>
+                                    <p style="font-size:40px;">2) Paul Hilfinger</p>
+                                    <p style="font-size:40px;">3) Dan Garcia</p>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-light hbutton" id="inst"> 
+                    INSTRUCTIONS 
+                </button>
+                
+                <div id="myInstModal" class="modal">
+                      <div class="modal-content">
+                        <span class="close" id="close1">&times;</span>
+                          
+                          <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 instBox" style="margin-bottom:20px;">
+                                    INSTRUCTIONS:
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12" style="text-align: left; font-size:35px;">
+                                   <p>On the following screen, you will be given a drawing that is split up into multiple parts. Your goal is to color this picture in such a way that the following requirements are met:
+                                  </p>
+                                  <p>
+                                    1. Each region of the drawing must be either <a style="color:#96bc96;">Green</a>, <a style="color:#bc77ad;">Purple</a>, or <a style="color: #6d8ebf;">Blue</a>.
+                                  </p>
+                                  <p>
+                                    2. No adjacent regions of the drawing are the same color.
+                                  </p>
+                                  <p>
+                                    3. You complete the activity before your three minutes run out!
+                                  </p>
+                                  <p style="margin-top:10px;">
+                                    Select the color you'd like to use in the bottom left corner. If you mess up, use the White option to reset your work.
+                                    Good luck!
+                                  </p>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        
+    
+    </div>
+
+</body>
+  
+<script>
+    var instmodal = document.getElementById("myInstModal");
+    var instbtn = document.getElementById("inst");
+    var span1 = document.getElementById("close1");
+    
+ 
+    
+    var leadmod = document.getElementById("myLeadModal");
+    var leadbtn = document.getElementById("lead");
+    var span3 = document.getElementById("close3");
+
+    instbtn.onclick = function() {
+      instmodal.style.display = "block";
+    }
+
+
+    
+    leadbtn.onclick = function() {
+      leadmod.style.display = "block";
+    }
+    
+    span1.onclick = function() {
+      instmodal.style.display = "none";
+    }
+    
+    span3.onclick = function() {
+      leadmod.style.display = "none";
+    }
+    
+    window.onclick = function(event) {
+      if (event.target == instmodal) {
+        instmodal.style.display = "none";
+      }
+        
+
+        
+      if (event.target == leadmod) {
+        leadmod.style.display = "none";
+      }
+    }    
+
+    
+</script>
