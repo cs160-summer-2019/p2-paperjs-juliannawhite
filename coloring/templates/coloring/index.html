@@ -23,14 +23,13 @@
 		#color-palette {
 			width: 900px;
 			display: flex;
-			flex-wrap: wrap;
-			position: absolute;
+			text-align:center;
       margin-top:-50px;
 			
 		}
 		.swatch {
-			width: 94px;
-			height: 94px;
+			width: 180px;
+			height: 180px;
 			-moz-border-radius: 12px;
 			-webkit-border-radius: 12px;
       margin-right:20px;
@@ -57,6 +56,7 @@
 		    margin-left: auto;
 		    margin-right: auto;
 		    display: block;
+        margin-top:-30px;
 		}
     
       body {
@@ -64,9 +64,7 @@
     }
 
     .art {
-        width: 650px;
-        height:830px;
-        background-color: white;
+        
         text-align: center;
         margin-top:20px;
         border:2px solid black;
@@ -90,6 +88,7 @@
 
     .btn {
         border:1px solid black;  
+        background-color: #C8C8C8;
     }
 
     .hbtn {
@@ -98,6 +97,7 @@
         font-size: 35px;
         margin-top: 10px;
         font-family: "Montserrat";
+        background-color: #C8C8C8;
     }
 
     .obtn {
@@ -105,11 +105,12 @@
         height:80px;
         font-size: 35px;
         margin-top: 10px;
+        background-color: #C8C8C8;
     }
 
     .timer {
         color:#bc77ad;
-        font-size: 160px;
+        font-size: 210px;
         font-family:"Bevan";
         letter-spacing: 5px;
       margin-top:-50px;
@@ -164,7 +165,7 @@
 			var mandala = {
 				item: null,
 				lastClicked: null,
-				filePath: '/static/coloring/images/mandala-freepik.svg'
+				filePath: '/static/coloring/images/160.svg'
 			};	
 
 			// color palette
@@ -264,6 +265,10 @@
     var pausemodal = document.getElementById("myPauseModal");
     var pausebtn = document.getElementById("pause");
     var span2 = document.getElementById("close2");
+      
+    var donemodal = document.getElementById("myDoneModal");
+    var donebtn = document.getElementById("done");
+    var span4 = document.getElementById("close4");
     
     instbtn.onclick = function() {
       instmodal.style.display = "block";
@@ -272,6 +277,11 @@
     
     pausebtn.onclick = function() {
       pausemodal.style.display = "block";
+        pause_clock();
+    }
+    
+    donebtn.onclick = function() {
+      donemodal.style.display = "block";
         pause_clock();
     }
     
@@ -285,6 +295,11 @@
         resume_clock();
     }
     
+    span4.onclick = function() {
+      donemodal.style.display = "none";
+        resume_clock();
+    }
+    
     window.onclick = function(event) {
       if (event.target == instmodal) {
         instmodal.style.display = "none";
@@ -293,6 +308,10 @@
         
     if (event.target == pausemodal) {
         pausemodal.style.display = "none";
+      }
+      
+      if (event.target == donemodal) {
+        donemodal.style.display = "none";
       }
     }
    
@@ -358,10 +377,11 @@
     <div class="row">
             
             <div class="col-12">
-              <button class="btn hbtn" onClick = "window.location = 'home'" style="background-color: white; margin-right:530px;"><i class="fa fa-home" ></i> Home</button>
+              <button class="btn hbtn" onClick = "window.location = 'home'" style="background-color: white; margin-right:430px;"><i class="fa fa-home" ></i> Home</button>
               <button class="btn obtn" style="margin-bottom: 20px; background-color: white; margin-right:15px;" id="pause"><i class="fa fa-pause"></i></button>
-              <button class="btn obtn" style="margin-bottom: 20px; background-color: white;" id="inst"><i class="fa fa-info"></i></button> 
-              
+              <button class="btn obtn" style="margin-bottom: 20px; background-color: white; margin-right:15px;" id="inst"><i class="fa fa-info"></i></button> 
+              <button class="btn obtn" style="margin-bottom: 20px; background-color: white;" id="done"><i class="fa fa-check"></i></button> 
+
               <div id="myPauseModal" class="modal">
                                   <div class="modal-content">
                                     <span class="close" id="close2">&times;</span>
@@ -406,8 +426,27 @@
                                   </p>
                                   <p style="margin-top:10px;">
                                     Select the color you'd like to use in the bottom left corner. If you mess up, use the White option to reset your work.
-                                    Good luck!
+                                    ake sure to press the check box when you're done. Good luck!
                                   </p>
+                                </div>
+                            </div>
+                                      </div>
+                                  </div>
+                            </div>
+              
+               <div id="myDoneModal" class="modal">
+                                  <div class="modal-content">
+                                    <span class="close" id="close4">&times;</span>
+
+                                      <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12 instBox" style="margin-bottom:20px;">
+                                                Congratulations!
+                                            </div>
+                                        </div>
+                                   <div class="row">
+                                <div class="col-12" style="text-align: left; font-size:35px;">
+                                   You managed to solve the Three Color Challenge! 
                                 </div>
                             </div>
                                       </div>
@@ -427,23 +466,27 @@
     </div>
     
     <div class="container-fluid">
-        <div class="row" style = "text-align: center; background-color: white; margin-bottom:80px; border:2px solid black; padding-top:30px;padding-bottom:30px;">
+        <div class="row" style = "text-align: center; margin-top:70px; ">
             <div class="col-12">
-                	<canvas id="myCanvas" width="750px" height="750px"></canvas>
+                	<canvas id="myCanvas" width="750px" height="450px" style="border:5px solid black; border-radius:5%;"></canvas>
             
             </div>
         </div>
     </div>
   
   <div class="container-fluid">
-     <div class="row" style = "text-align: left;">
+     <div class="row" style = "text-align: left; margin-top:210px;">
             <div class="col-9" >
                 	<div id="color-palette"></div>  
             </div>
        
          <div class="col-3" >
                     <div id="erasure"></div>  
-              </div>
+
+              
+       
+      
+           </div>
     </div>
 
     
